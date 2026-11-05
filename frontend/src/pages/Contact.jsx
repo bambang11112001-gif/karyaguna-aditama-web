@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { MapPin, Phone, Mail, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import axios from 'axios';
+import { API_URL } from '../apiConfig';
 import useWebsiteSettings from '../useWebsiteSettings';
 
 export default function Contact() {
@@ -28,7 +29,7 @@ export default function Contact() {
     setErrorMsg('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/contact', formData);
+      const response = await axios.post(`${API_URL}/api/contact`, formData);
       if (response.data.success) {
         setSubmitted(true);
       }

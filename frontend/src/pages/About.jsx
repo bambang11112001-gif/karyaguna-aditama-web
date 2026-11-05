@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API_URL } from '../apiConfig';
 import { Target, Eye, History, CheckCircle } from 'lucide-react';
 
 export default function About() {
@@ -8,7 +9,7 @@ export default function About() {
 
   useEffect(() => {
     let active = true;
-    axios.get('http://localhost:5000/api/company-profile')
+    axios.get(`${API_URL}/api/company-profile`)
       .then((response) => {
         if (active && response.data.success) setProfile(response.data.data);
       })

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Building2, TrendingUp, ShieldCheck, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const API_URL = 'http://localhost:5000';
+import { API_URL } from '../apiConfig';
 const businessIcons = { Building2, TrendingUp, ShieldCheck };
 
 function getImageSource(imageUrl) {

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Edit2, KeyRound, Plus, Trash2, UserPlus, X } from 'lucide-react';
+import { API_URL } from '../apiConfig';
 
-const API_URL = 'http://localhost:5000';
 const emptyAdmin = { name: '', username: '', email: '', password: '' };
 
 export default function UserManagement() {

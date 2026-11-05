@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Search, ArrowRight, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-const API_URL = 'http://localhost:5000';
+import { API_URL } from '../apiConfig';
 
 function getImageSource(imageUrl) {
   if (!imageUrl || imageUrl === 'default-product.jpg') return '';

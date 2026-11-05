@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Package, Plus, Trash2, RefreshCcw, Edit2 } from 'lucide-react';
+import { API_URL } from '../apiConfig';
 
 export default function AdminProducts() {
   const [products, setProducts] = useState([]);
@@ -21,7 +22,7 @@ export default function AdminProducts() {
   const getImageSource = (imageUrl) => {
     if (!imageUrl || imageUrl === 'default-product.jpg') return '';
     if (/^https?:\/\//i.test(imageUrl)) return imageUrl;
-    return `http://localhost:5000${imageUrl.startsWith('/') ? imageUrl : `/uploads/${imageUrl}`}`;
+    return `${API_URL}${imageUrl.startsWith('/') ? imageUrl : `/uploads/${imageUrl}`}`;
   };
 
   const requestData = useCallback(() => {
@@ -29,8 +30,8 @@ export default function AdminProducts() {
       const headers = { Authorization: `Bearer ${token}` };
 
       return Promise.all([
-        axios.get('http://localhost:5000/api/admin/products', { headers }),
-        axios.get('http://localhost:5000/api/admin/products/categories', { headers })
+        axios.get(`${API_URL}/api/admin/products`, { headers }),
+        axios.get(`${API_URL}/api/admin/products/categories`, { headers })
       ]);
   }, []);
 
@@ -87,10 +88,10 @@ export default function AdminProducts() {
       if (selectedImage) productData.append('image', selectedImage);
 
       const request = editingProduct
-        ? axios.put(`http://localhost:5000/api/admin/products/${editingProduct.id}`, productData, {
+        ? axios.put(`${API_URL}/api/admin/products/${editingProduct.id}`, productData, {
           headers: { Authorization: `Bearer ${token}` }
         })
-        : axios.post('http://localhost:5000/api/admin/products', productData, {
+        : axios.post(`${API_URL}/api/admin/products`, productData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const res = await request;
@@ -140,7 +141,7 @@ export default function AdminProducts() {
     if (!window.confirm('Apakah Anda yakin ingin menghapus produk ini?')) return;
     try {
       const token = localStorage.getItem('adminToken');
-      await axios.delete(`http://localhost:5000/api/admin/products/${id}`, {
+      await axios.delete(`${API_URL}/api/admin/products/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       await fetchData();

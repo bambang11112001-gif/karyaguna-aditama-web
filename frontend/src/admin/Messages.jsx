@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Trash2, RefreshCcw, Eye, EyeOff, X } from 'lucide-react';
+import { API_URL } from '../apiConfig';
 
 export default function AdminMessages() {
   const [messages, setMessages] = useState([]);
@@ -11,7 +12,7 @@ export default function AdminMessages() {
 
   const requestMessages = useCallback(() => {
     const token = localStorage.getItem('adminToken');
-    return axios.get('http://localhost:5000/api/admin/messages', {
+    return axios.get(`${API_URL}/api/admin/messages`, {
         headers: { Authorization: `Bearer ${token}` }
       });
   }, []);
@@ -62,7 +63,7 @@ export default function AdminMessages() {
 
     try {
       const token = localStorage.getItem('adminToken');
-      await axios.delete(`http://localhost:5000/api/admin/messages/${id}`, {
+      await axios.delete(`${API_URL}/api/admin/messages/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessages((currentMessages) => currentMessages.filter((message) => message.id !== id));
@@ -79,7 +80,7 @@ export default function AdminMessages() {
     setError('');
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await axios.put(`http://localhost:5000/api/admin/messages/${message.id}/status`, {
+      const res = await axios.put(`${API_URL}/api/admin/messages/${message.id}/status`, {
         is_read: isRead ? 0 : 1
       }, {
         headers: { Authorization: `Bearer ${token}` }

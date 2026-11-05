@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import HeroSlideshowContext from './HeroSlideshowContext';
-
-const API_URL = 'http://localhost:5000';
+import { API_URL } from './apiConfig';
 
 export default function HeroSlideshowProvider({ children }) {
   const [slides, setSlides] = useState([]);

@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Image, Pencil, Plus, RefreshCcw, Trash2, X } from 'lucide-react';
-
-const API_URL = 'http://localhost:5000';
+import { API_URL } from '../apiConfig';
 
 function getImageSource(imageUrl) {
   if (!imageUrl) return '';

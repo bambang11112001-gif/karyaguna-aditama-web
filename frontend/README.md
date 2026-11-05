@@ -1,5 +1,17 @@
 # React + Vite
 
+## API URL
+
+The frontend reads the backend base URL from `VITE_API_URL`. For local development,
+create a `.env.local` file in `frontend/` and set the URL, for example:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+If the variable is not set, the app uses
+`https://karyaguna-aditama-web.onrender.com/api`.
+
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
 Currently, two official plugins are available:

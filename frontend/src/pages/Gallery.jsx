@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ChevronLeft, ChevronRight, Images, X } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000';
+import { API_URL } from '../apiConfig';
 
 function getImageSource(imageUrl) {
   if (!imageUrl) return '';

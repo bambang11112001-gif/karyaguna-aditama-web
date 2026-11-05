@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Edit2, Plus, Trash2, X } from 'lucide-react';
+import { API_URL } from '../apiConfig';
 
-const API_URL = 'http://localhost:5000';
 const emptyForm = { title: '', description: '', icon: 'Building2' };
 
 function getImageSource(imageUrl) {

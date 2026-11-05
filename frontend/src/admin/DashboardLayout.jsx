@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Outlet, useNavigate, Link, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Building, Building2, Package, Image, PanelsTopLeft, MessageSquare, Settings, LogOut, Menu, X } from 'lucide-react';
+import { API_URL } from '../apiConfig';
 
 export default function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -24,7 +25,7 @@ export default function DashboardLayout() {
     const token = localStorage.getItem('adminToken');
     if (!token) return;
     try {
-      const response = await axios.get('http://localhost:5000/api/admin/messages', {
+      const response = await axios.get(`${API_URL}/api/admin/messages`, {
         headers: { Authorization: ['Bearer', token].join(' ') }
       });
       if (response.data.success) {

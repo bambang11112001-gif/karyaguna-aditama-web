@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ImageUp, Save, Trash2 } from 'lucide-react';
+import { API_URL } from '../apiConfig';
 
-const API_URL = 'http://localhost:5000';
 const blankSettings = {
   website_name: '',
   tagline: '',

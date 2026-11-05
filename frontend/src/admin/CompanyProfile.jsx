@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Save } from 'lucide-react';
+import { API_URL } from '../apiConfig';
 
-const API_URL = 'http://localhost:5000';
 const CURRENT_YEAR = new Date().getFullYear();
 const initialProfile = {
   company_name: '',

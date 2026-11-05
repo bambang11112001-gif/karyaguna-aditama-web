@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Package, Layers, MessageSquare, Image, RefreshCcw } from 'lucide-react';
+import { API_URL } from '../apiConfig';
 
-const API_URL = 'http://localhost:5000';
 const EMPTY_STATS = {
   products: 0,
   categories: 0,

@@ -1,1 +1,3 @@
-export const getWebsiteAssetUrl = (url) => !url ? '' : /^https?:\/\//i.test(url) ? url : `http://localhost:5000${url.startsWith('/') ? url : `/${url}`}`;
+import { API_URL } from './apiConfig';
+
+export const getWebsiteAssetUrl = (url) => !url ? '' : /^https?:\/\//i.test(url) ? url : `${API_URL}${url.startsWith('/') ? url : `/${url}`}`;
