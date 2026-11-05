@@ -1,0 +1,1 @@
+export const getWebsiteAssetUrl = (url) => !url ? '' : /^https?:\/\//i.test(url) ? url : `http://localhost:5000${url.startsWith('/') ? url : `/${url}`}`;

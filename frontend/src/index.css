@@ -1,0 +1,68 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&family=Poppins:wght@500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg: #F5F7F2;
+  --color-brand-primary: #27823E;
+  --color-brand-secondary: #8CBF43;
+  --color-brand-accent: #A6CE39;
+  --color-brand-light: #8CBF43;
+  --color-brand-dark: #183D27;
+  --color-brand-text: #374151;
+  --color-brand-muted: #6B7280;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+  --font-display: 'Poppins', sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-brand-bg text-brand-text font-sans antialiased;
+    margin: 0;
+    min-width: 320px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-brand-dark;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F7F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8CBF43;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #27823E;
+}
+
+@keyframes galleryFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
