@@ -1,3 +1,3 @@
-import { API_URL } from './apiConfig';
+import { getBackendAssetUrl } from './apiConfig';
 
-export const getWebsiteAssetUrl = (url) => !url ? '' : /^https?:\/\//i.test(url) ? url : `${API_URL}${url.startsWith('/') ? url : `/${url}`}`;
+export const getWebsiteAssetUrl = (url) => getBackendAssetUrl(url, '/');

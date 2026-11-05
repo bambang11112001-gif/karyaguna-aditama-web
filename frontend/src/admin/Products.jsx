@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Package, Plus, Trash2, RefreshCcw, Edit2 } from 'lucide-react';
-import { API_URL } from '../apiConfig';
+import { API_URL, getBackendAssetUrl } from '../apiConfig';
 
 export default function AdminProducts() {
   const [products, setProducts] = useState([]);
@@ -21,8 +21,7 @@ export default function AdminProducts() {
 
   const getImageSource = (imageUrl) => {
     if (!imageUrl || imageUrl === 'default-product.jpg') return '';
-    if (/^https?:\/\//i.test(imageUrl)) return imageUrl;
-    return `${API_URL}${imageUrl.startsWith('/') ? imageUrl : `/uploads/${imageUrl}`}`;
+    return getBackendAssetUrl(imageUrl);
   };
 
   const requestData = useCallback(() => {

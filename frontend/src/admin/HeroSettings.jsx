@@ -1,14 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Image, Plus, RefreshCcw, Trash2 } from 'lucide-react';
-import { API_URL } from '../apiConfig';
-
-function getImageSource(imageUrl) {
-  if (!imageUrl) return '';
-  if (/^https?:\/\//i.test(imageUrl)) return imageUrl;
-  const imagePath = imageUrl.startsWith('/') ? imageUrl : `/uploads/${imageUrl}`;
-  return `${API_URL}${imagePath}`;
-}
+import { API_URL, getBackendAssetUrl } from '../apiConfig';
 
 function getAuthHeaders() {
   const token = localStorage.getItem('adminToken');
@@ -159,7 +152,11 @@ export default function HeroSettings() {
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {slides.map((slide, index) => (
             <article key={slide.id} className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card">
-              <img src={getImageSource(slide.image_url)} alt={`Slide ${index + 1}`} className="h-48 w-full bg-brand-bg object-cover" />
+              <img
+                src={getBackendAssetUrl(slide.image_url)}
+                alt={`Slide ${index + 1}`}
+                className="h-48 w-full bg-brand-bg object-cover"
+              />
               <div className="flex items-center justify-between gap-3 p-4">
                 <div className="min-w-0">
                   <p className="truncate text-sm font-semibold text-brand-dark" title={slide.image_url}>{slide.image_url}</p>

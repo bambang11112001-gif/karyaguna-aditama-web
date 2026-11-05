@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Search, ArrowRight, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { API_URL } from '../apiConfig';
+import { API_URL, getBackendAssetUrl } from '../apiConfig';
 
 function getImageSource(imageUrl) {
   if (!imageUrl || imageUrl === 'default-product.jpg') return '';
-  if (/^https?:\/\//i.test(imageUrl)) return imageUrl;
-  return `${API_URL}${imageUrl.startsWith('/') ? imageUrl : `/uploads/${imageUrl}`}`;
+  return getBackendAssetUrl(imageUrl);
 }
 
 export default function Products() {

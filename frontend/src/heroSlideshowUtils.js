@@ -1,7 +1,5 @@
-import { API_URL } from './apiConfig';
+import { getBackendAssetUrl } from './apiConfig';
 
 export function getHeroImageSource(imageUrl) {
-  if (!imageUrl) return '';
-  if (/^https?:\/\//i.test(imageUrl)) return imageUrl;
-  return `${API_URL}${imageUrl.startsWith('/') ? imageUrl : `/uploads/${imageUrl}`}`;
+  return getBackendAssetUrl(imageUrl);
 }

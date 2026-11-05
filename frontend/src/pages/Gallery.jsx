@@ -2,12 +2,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ChevronLeft, ChevronRight, Images, X } from 'lucide-react';
 
-import { API_URL } from '../apiConfig';
+import { API_URL, getBackendAssetUrl } from '../apiConfig';
 
 function getImageSource(imageUrl) {
-  if (!imageUrl) return '';
-  if (/^https?:\/\//i.test(imageUrl)) return imageUrl;
-  return `${API_URL}${imageUrl.startsWith('/') ? imageUrl : `/uploads/${imageUrl}`}`;
+  return getBackendAssetUrl(imageUrl);
 }
 
 export default function Gallery() {

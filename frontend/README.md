@@ -12,6 +12,11 @@ VITE_API_URL=http://localhost:5000/api
 If the variable is not set, the app uses
 `https://karyaguna-aditama-web.onrender.com/api`.
 
+For deployment, set `VITE_API_URL=https://karyaguna-aditama-web.onrender.com/api`
+in the frontend hosting environment and rebuild the frontend. Uploaded-image paths
+returned by the API are resolved against that backend URL; old `localhost` image
+URLs are also redirected to the configured backend.
+
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
 Currently, two official plugins are available:

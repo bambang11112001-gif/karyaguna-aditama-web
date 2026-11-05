@@ -1,15 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Edit2, Plus, Trash2, X } from 'lucide-react';
-import { API_URL } from '../apiConfig';
+import { API_URL, getBackendAssetUrl } from '../apiConfig';
 
 const emptyForm = { title: '', description: '', icon: 'Building2' };
-
-function getImageSource(imageUrl) {
-  if (!imageUrl) return '';
-  if (/^https?:\/\//i.test(imageUrl)) return imageUrl;
-  return `${API_URL}${imageUrl.startsWith('/') ? imageUrl : `/${imageUrl}`}`;
-}
 
 export default function AdminBusinessFields() {
   const [businessFields, setBusinessFields] = useState([]);
@@ -222,7 +216,7 @@ export default function AdminBusinessFields() {
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                     {existingImages.map((url) => (
                       <div key={url} className="relative aspect-[4/3] overflow-hidden rounded-lg border border-gray-200">
-                        <img src={getImageSource(url)} alt="Foto bidang usaha tersimpan" className="h-full w-full object-cover" />
+                        <img src={getBackendAssetUrl(url, '/')} alt="Foto bidang usaha tersimpan" className="h-full w-full object-cover" />
                         <button type="button" onClick={() => setExistingImages((current) => current.filter((item) => item !== url))} aria-label="Hapus foto tersimpan" className="absolute right-2 top-2 rounded-full bg-white/90 p-1.5 text-red-600 shadow hover:bg-white"><X size={15} /></button>
                       </div>
                     ))}

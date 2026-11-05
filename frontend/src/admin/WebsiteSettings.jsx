@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ImageUp, Save, Trash2 } from 'lucide-react';
-import { API_URL } from '../apiConfig';
+import { API_URL, getBackendAssetUrl } from '../apiConfig';
 
 const blankSettings = {
   website_name: '',
@@ -15,8 +15,6 @@ const blankSettings = {
   linkedin_url: '',
   youtube_url: ''
 };
-
-const imageUrl = (url) => !url ? '' : /^https?:\/\//i.test(url) ? url : `${API_URL}${url.startsWith('/') ? url : `/${url}`}`;
 
 export default function WebsiteSettings() {
   const [settings, setSettings] = useState(blankSettings);
@@ -82,7 +80,7 @@ export default function WebsiteSettings() {
 
   if (loading) return <div className="py-10 text-center text-sm text-gray-500">Memuat pengaturan website...</div>;
 
-  const currentLogo = logoPreview || (!removeLogo ? imageUrl(settings.logo_url) : '');
+  const currentLogo = logoPreview || (!removeLogo ? getBackendAssetUrl(settings.logo_url, '/') : '');
 
   return (
     <div>

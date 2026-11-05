@@ -3,14 +3,8 @@ import axios from 'axios';
 import { Building2, TrendingUp, ShieldCheck, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import { API_URL } from '../apiConfig';
+import { API_URL, getBackendAssetUrl } from '../apiConfig';
 const businessIcons = { Building2, TrendingUp, ShieldCheck };
-
-function getImageSource(imageUrl) {
-  if (!imageUrl) return '';
-  if (/^https?:\/\//i.test(imageUrl)) return imageUrl;
-  return `${API_URL}${imageUrl.startsWith('/') ? imageUrl : `/${imageUrl}`}`;
-}
 
 const businessDetails = {
   'Jasa Konstruksi': [
@@ -58,7 +52,7 @@ function BusinessImageCarousel({ business, Icon }) {
           {images.map((image, index) => (
             <img
               key={image}
-              src={getImageSource(image)}
+              src={getBackendAssetUrl(image, '/')}
               alt={`${business.title}, foto ${index + 1}`}
               aria-hidden={index !== activeIndex}
               className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${index === activeIndex ? 'opacity-100' : 'opacity-0'}`}

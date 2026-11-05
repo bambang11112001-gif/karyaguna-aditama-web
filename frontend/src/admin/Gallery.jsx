@@ -1,13 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Image, Pencil, Plus, RefreshCcw, Trash2, X } from 'lucide-react';
-import { API_URL } from '../apiConfig';
-
-function getImageSource(imageUrl) {
-  if (!imageUrl) return '';
-  if (/^https?:\/\//i.test(imageUrl)) return imageUrl;
-  return `${API_URL}${imageUrl.startsWith('/') ? imageUrl : `/uploads/${imageUrl}`}`;
-}
+import { API_URL, getBackendAssetUrl } from '../apiConfig';
 
 export default function AdminGallery() {
   const [items, setItems] = useState([]);
@@ -211,7 +205,7 @@ export default function AdminGallery() {
                   {editingItem.photos.map((photo, index) => (
                     <img
                       key={photo.id || photo.image_url}
-                      src={getImageSource(photo.image_url)}
+                      src={getBackendAssetUrl(photo.image_url)}
                       alt={`Foto album ${index + 1}`}
                       title={photo.is_cover ? 'Cover album' : `Foto ${index + 1}`}
                       className={`h-16 w-20 rounded-lg object-cover ${photo.is_cover ? 'ring-2 ring-brand-primary' : ''}`}
@@ -240,7 +234,7 @@ export default function AdminGallery() {
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {items.map((item) => (
             <article key={item.id} className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card">
-              <img src={getImageSource(item.image_url)} alt={item.title} className="h-56 w-full object-cover" />
+              <img src={getBackendAssetUrl(item.image_url)} alt={item.title} className="h-56 w-full object-cover" />
               <div className="flex items-start justify-between gap-4 p-5">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wide text-brand-primary">{item.category || item.description}</p>
